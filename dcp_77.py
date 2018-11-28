@@ -12,8 +12,8 @@ def longest_inc_subsequence(arr):
         memo[i] = ans 
         return memo[i]
     dp(len(arr)-1)
-    print(memo)
+    
     return max(memo.values())
 
-arr = [3,1,2,9,8]
+arr = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
 print(longest_inc_subsequence(arr))
