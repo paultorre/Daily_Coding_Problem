@@ -1,0 +1,8 @@
+Takeaways:
+
+	When merging lists, take advantage of the fact that they are already themselved sorted by 
+	using a heap.
+
+	When constructing a new linked list, make head = tail = ListNode().  Then, start assigning things to the tail and moving the tail down.  Finally, return head.next
+
+	
