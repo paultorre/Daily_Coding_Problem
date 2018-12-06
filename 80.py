@@ -48,3 +48,9 @@ print(d[m])
 
 print('------- BFS SOLUTION --------')
 print(bfs(root).val)
+
+
+a = b = TreeNode('s')
+
+
+print(a==b)
