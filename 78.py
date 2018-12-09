@@ -1,27 +1,10 @@
+from random import randint
 import heapq
 
 class ListNode:
     def __init__(self,x):
         self.val = x
         self.next = None
-
-
-def link_k_linked_lists(lists):
-    dummy = tail = ListNode(0)
-    mh = []
-
-    for i,h in enumerate(lists):
-        heapq.heappush(mh,(h.val,i))
-    while mh:
-        print(mh)
-        t = heapq.heappop(mh)
-        tail.next = lists[t[1]]
-        tail = tail.next
-        lists[t[1]] = lists[t[1]].next
-        if lists[t[1]]:
-            heapq.heappush(mh,(lists[t[1]].val, t[1]))
-
-    return dummy.next
 
 l1 = ListNode(0)
 l2 = ListNode(0)
@@ -44,8 +27,9 @@ for i in range(0,20,4):
     n = ListNode(i)
     t.next = n
     t = t.next
-# Call the func
-ans = link_k_linked_lists([l1,l2, l3])
+
+# the lists
+k_lists = [l1,l2,l3]
 
 print('LIST 1: ', end=' ')
 while l1:
@@ -62,6 +46,36 @@ while l3:
     print(l3.val,'-> ',end='') if l3.next is not None else print(l3.val)
     l3 = l3.next
 
+
+#   Make a list of all the pointers to a list.  
+#   While there are still nodes to merge, push all values into a heap as a tuple also containing info about which list they are from.
+#   Pop the minium, then link to final answer.  
+#
+#   Time - O(N)  Linear on the order of the length of the lists.  Every node in every list must be touched once
+#   Space - O(N)  Same as time.
+head = tail = ListNode(0)
+
+while any(k_lists):
+
+    mheap = []
+    for i in range(len(k_lists)):
+        heapq.heappush(mheap,(k_lists[i].val,i)) if k_lists[i] else None
+
+    n,i = heapq.heappop(mheap)
+    tail.next = ListNode(n)
+    
+    k_lists[i] = k_lists[i].next
+            
+
+    tail = tail.next
+    
+print('MERGED: ', end=' ')
+ans = head.next
 while ans:
-    print(ans.val)
+    print(ans.val,'-> ',end='') if ans.next is not None else print(ans.val)
     ans = ans.next
+
+
+
+
+
