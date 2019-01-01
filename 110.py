@@ -1,5 +1,11 @@
 class Node(object):
-    """ Simple Binary Tree Node object class"""
+    """ Simple Binary Tree Node object class
+    
+        Attributes:
+            data: value of node
+            left: left child (Node object)
+            right: right child (Node object)
+    """
     def __init__(self,x):
         self.data = x
         self.left = None
@@ -30,7 +36,7 @@ def enum_paths(root):
             stack.append(t.right) if t.right else None
             stack.append(t.left) if t.left else None
     return paths
-    
+
 
 #   Test the code.
 #
